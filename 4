@@ -1,0 +1,50 @@
+import math
+
+def calculate_rectangle_area(width, height):
+    """
+    Вычисляет площадь прямоугольника.
+
+    Args:
+    width (float): Ширина прямоугольника
+    height (float): Высота прямоугольника
+
+    Returns:
+    float: Площадь прямоугольника
+    """
+    return width * height
+
+
+def calculate_circle_area(radius):
+    """
+    Вычисляет площадь круга.
+
+    Args:
+    radius (float): Радиус круга
+
+    Returns:
+    float: Площадь круга
+    """
+    return math.pi * radius * radius
+
+
+def main():
+    """
+    Основная функция программы-калькулятора.
+    Запрашивает данные у пользователя и выводит результаты расчетов.
+    """
+    print("===")
+    print("Расчет площади прямоугольника")
+    width = float(input("Введите ширину прямоугольника: "))
+    height = float(input("Введите высоту прямоугольника: "))
+    print("===")
+    print(f"Площадь прямоугольника: {calculate_rectangle_area(width, height):.2f}")
+
+    print("===")
+    print("Расчет площади круга")
+    radius = float(input("Введите радиус круга: "))
+    print("===")
+    print(f"Площадь круга: {calculate_circle_area(radius):.2f}")
+
+
+if __name__ == "__main__":
+    main()
