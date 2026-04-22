@@ -1,0 +1,32 @@
+def calculate_tax(income):
+    """
+    Рассчитывает доходный налог и чистый доход по ставке 13%.
+
+    Args:
+    income (float): Годовой доход
+
+    Returns:
+    net_income = income - tax_amount
+    """
+    TAX_RATE = 0.13
+    tax_amount = income * TAX_RATE
+    net_income = income - tax_amount
+    return tax_amount, net_income
+
+
+def main():
+    """
+    Основная функция программы расчета налогов.
+
+    Запрашивает доход, вычисляет налог и выводит результат.
+    """
+    income = float(input("Введите ваш годовой доход: "))
+    tax_amount, net_income = calculate_tax(income)
+
+    print(f"Общая сумма дохода: {income:.2f} руб.")
+    print(f"Сумма рассчитанного налога: {tax_amount:.2f} руб.")
+    print(f"Сумма выручки: {net_income:.2f} руб.")
+
+
+if __name__ == "__main__":
+    main()
