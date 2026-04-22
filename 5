@@ -1,0 +1,60 @@
+def calculate_banknotes(amount):
+    """
+    Рассчитывает количество купюр каждого номинала для выдачи суммы.
+    Использует "жадный" алгоритм - выдает сначала самые крупные купюры.
+
+    Args:
+        amount (int): Сумма для выдачи (кратная 100).
+
+    Returns:
+        dict: Словарь с номиналами и количеством купюр.
+    """
+    BANKNOTES = [5000, 2000, 1000, 500, 200, 100]
+    result = {}
+    remaining_amount = amount
+
+    for banknote in BANKNOTES:
+        if remaining_amount >= banknote:
+            count = remaining_amount // banknote
+            result[banknote] = count
+            remaining_amount -= count * banknote
+    return result
+
+def main():
+    """
+    Основная функция программы банкомата.
+    Имитирует работу банкомата по выдаче купюр.
+    """
+    BANKNOTES = [5000, 2000, 1000, 500, 200, 100] # Это константа BANKNOTES также используется в main для вывода.
+    try:
+        amount = int(input("Введите сумму для снятия (кратную 100): "))
+
+        if amount <= 0:
+            print("Ошибка: Сумма должна быть положительной!")
+            return
+
+        if amount % 100 != 0:
+            print("Ошибка: Сумма должна быть кратной 100!")
+            return
+
+        banknotes = calculate_banknotes(amount)
+
+        print(f"\nСумма к выдаче: {amount} руб.")
+        print("Купюры к выдаче:")
+
+        total_issued = 0
+        for banknote_denomination in BANKNOTES: # Итерируемся по номиналам, чтобы порядок был правильным
+            count = banknotes.get(banknote_denomination, 0) # Используем .get() на случай, если такого номинала не было
+            if count > 0:
+                print(f" {banknote_denomination} руб. - {count} шт")
+                total_issued += banknote_denomination * count
+
+        print(f"\nИтого выдано: {total_issued} руб.")
+
+    except ValueError:
+        print("Ошибка! Пожалуйста, введите целое число.")
+    except Exception as e: # Общая обработка других возможных ошибок
+        print(f"Произошла непредвиденная ошибка: {e}")
+
+if __name__ == "__main__":
+    main()
